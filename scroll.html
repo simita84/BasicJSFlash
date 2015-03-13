@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flash text</title>
+	<style type="text/css">
+		body{
+			background: black;
+			color: white;
+			font-family: monospace;
+			text-align: center;
+			font-size: 40px;
+		}
+	</style>
+	<script type="text/javascript">
+
+	function start_anim(){
+		var el=document.getElementById('div');
+		el.style.color = (el.style.color == 'red' ) ? 'blue' : 'red' ; 
+
+	}
+	function stop_anim(){
+		clearInterval(interval_id);
+	}
+	var word_counter = 0;
+	var char_count   = 0;
+	function word_flash()
+	{
+		
+		var word = ["hello","how are you","come gain"];
+		var el   = document.getElementById('word');
+
+		el.innerHTML  = el.innerHTML + word[word_counter][char_count++];
+
+		if(char_count == word[word_counter].length+1){
+			char_count = 0;
+			word_counter++;
+			el.innerHTML  =  " ";
+		}
+		if(word_counter == word.length){
+			word_counter = 0;
+			el.innerHTML = " ";
+		}
+	}	 
+
+	var interval_id = setInterval(word_flash,600);
+	var interval_id = setInterval(start_anim,300);
+
+	</script>
+</head>
+<body>
+	<div id="div"><h1 class="text">*************************</h1></div>
+
+	<div><h1 id="word"></h1></div>
+ 
+</body>
+</html>
